@@ -1,3 +1,4 @@
+
 # FIAP - Faculdade de Informática e Administração Paulista
 
 <p align="center">
@@ -6,28 +7,27 @@
 
 <br>
 
-# Nome do projeto
+# Sistema Inteligente de Monitoramento Agrícola com ESP32
 
-## Nome do grupo
+## Grupo 66
 
 ## 👨‍🎓 Integrantes: 
-- <a href="https://www.linkedin.com/company/inova-fusca">Nome do integrante 1</a>
-- <a href="https://www.linkedin.com/company/inova-fusca">Nome do integrante 2</a>
-- <a href="https://www.linkedin.com/company/inova-fusca">Nome do integrante 3</a> 
-- <a href="https://www.linkedin.com/company/inova-fusca">Nome do integrante 4</a> 
-- <a href="https://www.linkedin.com/company/inova-fusca">Nome do integrante 5</a>
+- Gustavo Valtrick - RM559575
+- Iago Cotta - RM559655
+- Pedro Scofield - RM560589
+- Rodrigo Mastropietro - RM560081
+- Tiago de Andrade Bastos - RM560467
 
 ## 👩‍🏫 Professores:
 ### Tutor(a) 
-- <a href="https://www.linkedin.com/company/inova-fusca">Nome do Tutor</a>
+- <a href="https://www.linkedin.com/in/lucas-gomes-moreira-15a8452a/">Lucas Gomes Moreira</a>
 ### Coordenador(a)
-- <a href="https://www.linkedin.com/company/inova-fusca">Nome do Coordenador</a>
+- <a href="https://www.linkedin.com/in/profandregodoi/">André Godoi</a>
 
 
-## 📜 Descrição
+## 📜 Objetivo do Projeto
 
-*Descreva seu projeto com base no texto do PBL (até 600 palavras)*
-
+O objetivo deste projeto é desenvolver um sistema inteligente de monitoramento agrícola utilizando o microcontrolador ESP32 e sensores diversos para otimizar recursos na agricultura, como a irrigação e o controle climático. O sistema monitora variáveis ambientais (umidade, temperatura, nível de água e intensidade de luz) e detecta movimento para ativar um alerta. Além disso, a simulação de diferentes condições permite avaliar o funcionamento do sistema de forma prática e precisa.
 
 ## 📁 Estrutura de pastas
 
@@ -37,36 +37,68 @@ Dentre os arquivos e pastas presentes na raiz do projeto, definem-se:
 
 - <b>assets</b>: aqui estão os arquivos relacionados a elementos não-estruturados deste repositório, como imagens.
 
-- <b>config</b>: Posicione aqui arquivos de configuração que são usados para definir parâmetros e ajustes do projeto.
+- <b>config</b>: Não utilizada no projeto.
 
-- <b>document</b>: aqui estão todos os documentos do projeto que as atividades poderão pedir. Na subpasta "other", adicione documentos complementares e menos importantes.
+- <b>docs</b>: documentação do projeto, incluindo a descrição do sistema e explicações sobre cada sensor.
 
-- <b>scripts</b>: Posicione aqui scripts auxiliares para tarefas específicas do seu projeto. Exemplo: deploy, migrações de banco de dados, backups.
+- <b>scripts</b>: Não utilizada no projeto.
 
-- <b>src</b>: Todo o código fonte criado para o desenvolvimento do projeto ao longo das 7 fases.
+- <b>src</b>: Contém o código-fonte do projeto.
 
 - <b>README.md</b>: arquivo que serve como guia e explicação geral sobre o projeto (o mesmo que você está lendo agora).
 
-## 🔧 Como executar o código
+## Desenho do Circuito Completo
+![Circuito Completo](assets/circuitocompleto.png)
 
-*Acrescentar as informações necessárias sobre pré-requisitos (IDEs, serviços, bibliotecas etc.) e instalação básica do projeto, descrevendo eventuais versões utilizadas. Colocar um passo a passo de como o leitor pode baixar o seu código e executá-lo a partir de sua máquina ou seu repositório. Considere a explicação organizada em fase.*
+## Descrição do papel de cada sensor no sistema
+Este projeto é implementado no simulador [Wokwi](https://wokwi.com/), e o circuito completo envolve os seguintes componentes:
+- **ESP32** - Microcontrolador central.
+- **DHT-22** - Sensor de temperatura e umidade.
+- **HC-SR04** - Sensor ultrassônico para monitoramento do nível de água.
+- **PIR** - Sensor de movimento que aciona um alerta.
+- **LDR** - Sensor de luz para medir a intensidade de luz solar.
+- **Relé** - Para controle da bomba de irrigação.
+- **Servo Motor** - Movimentado como parte do sistema de alerta.
+- **Buzzer** - Emite alerta sonoro em caso de detecção de movimento.
+- **LEDs** - Indicadores para o status de irrigação, alerta de baixo nível de água e umidade.
+
+## Como configurar e rodar o projeto no Wokwi
+
+### No Wokwi
+1. Acesse [Wokwi.com](https://wokwi.com/) e crie um novo projeto.
+2. Importe o código completo do projeto no editor.
+3. Carregue o arquivo `diagram.json` para configurar o circuito.
+4. Clique em “Iniciar Simulação” para executar o projeto e visualizar as leituras dos sensores e o funcionamento do sistema.
 
 
-## 🗃 Histórico de lançamentos
+## 🧪 Testes Realizados
+O sistema exibe as leituras de cada sensor e as ações correspondentes no Monitor Serial, incluindo:
+- Mensagens de alerta sobre temperatura e umidade.
+- Mensagens de nível de água e necessidade de irrigação.
+- Ativação de alerta de movimento.
+- Monitoramento de luz solar, com ativação de alertas para aumentar a irrigação.
 
-* 0.5.0 - XX/XX/2024
-    * 
-* 0.4.0 - XX/XX/2024
-    * 
-* 0.3.0 - XX/XX/2024
-    * 
-* 0.2.0 - XX/XX/2024
-    * 
-* 0.1.0 - XX/XX/2024
-    *
+### Prints do Monitor Serial com mensagens de funcionamento
+
+- **DHT22**: Testado para alternar entre umidade alta e baixa e observar a ativação e desativação do relé e LEDs.
+![Monitor Serial do DHT-22](assets/dht22.png)
+- **HC-SR04**: Testado para simular três níveis de água (baixo, ideal e alto), com a ativação dos LEDs de alerta e irrigação.
+![Monitor Serial do HC-SR04](assets/hcsr04.png)
+- **PIR**: Testado para simular movimento, verificando o funcionamento do buzzer e do servomotor.
+![Monitor Serial do PIR com buzzer e servomotor](assets/pir.png)
+- **LDR**: Testado para alternar entre luz alta e baixa, ajustando a necessidade de irrigação.
+![Monitor Serial do LDR](assets/ldr.png)
+- **Integração de todos os sensores**: Testado para verificar o funcionamento na integração de todos os sensores no microcontrolador ESP32
+![Projeto Final Funcionando](assets/ProjetoCompleto.png)
+
+### Resultados
+
+A simulação mostrou que o sistema responde adequadamente a diferentes condições ambientais, acionando os componentes conforme esperado para otimizar o uso de recursos na agricultura.
+
+
 
 ## 📋 Licença
 
-<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/agodoi/template">MODELO GIT FIAP</a> por <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://fiap.com.br">Fiap</a> está licenciado sobre <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Attribution 4.0 International</a>.</p>
+![CC BY License](https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1) ![CC BY License](https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1)
 
-
+[MODELO GIT FIAP](https://github.com/agodoi/template) por [Fiap](https://fiap.com.br) está licenciado sob [Attribution 4.0 International](http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1).

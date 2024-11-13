@@ -28,5 +28,6 @@ void loop() {
     }
     delay(5000);
 }
-
-
+```
+## A partir da imagem, verificamos o funcionamento pelo Monitor Serial:
+![Monitor Serial do PIR](../assets/Validaçaopir.png)

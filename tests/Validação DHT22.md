@@ -43,3 +43,6 @@ void loop() {
 
     delay(2000);
 }
+```
+## A partir da imagem, verificamos o funcionamento pelo Monitor Serial:
+![Monitor Serial do DHT-22](../assets/Validaçaodht22.png)

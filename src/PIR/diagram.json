@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "author": "Pedro Scofield",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    {
+      "type": "wokwi-pir-motion-sensor",
+      "id": "pir1",
+      "top": 432,
+      "left": -83.62,
+      "rotate": 180,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-servo",
+      "id": "servo1",
+      "top": 313,
+      "left": -277.4,
+      "rotate": 90,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": 441.6,
+      "left": 67.2,
+      "rotate": 180,
+      "attrs": { "volume": "0.1" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "pir1:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "pir1:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "pir1:OUT", "esp:23", "green", [ "v-19.2", "h163.34", "v-374.4" ] ],
+    [ "bz1:2", "esp:22", "green", [ "v-393.6", "h0.4" ] ],
+    [ "bz1:1", "esp:GND.1", "green", [ "v-220.8", "h-124.8", "v-67.2", "h0", "v9.6" ] ],
+    [ "servo1:PWM", "esp:21", "green", [ "v-57.6", "h316.6", "v-153.6" ] ],
+    [ "servo1:V+", "esp:5V", "green", [ "v0" ] ],
+    [ "servo1:GND", "esp:GND.1", "black", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}

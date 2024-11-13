@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "author": "Pedro Scofield",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": -105.6, "left": -23.96, "attrs": {} },
+    { "type": "wokwi-hc-sr04", "id": "ultrasonic1", "top": 203.1, "left": 207.1, "attrs": {} },
+    { "type": "wokwi-led", "id": "led1", "top": -13.2, "left": -265, "attrs": { "color": "red" } },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 272.75,
+      "left": -182.4,
+      "attrs": { "value": "10000" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 23.15,
+      "left": -211.2,
+      "attrs": { "value": "220" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "ultrasonic1:TRIG", "esp:5", "green", [ "v9.6", "h-192.4", "v-297.6" ] ],
+    [ "ultrasonic1:ECHO", "esp:18", "green", [ "v19.2", "h-183.2", "v-316.8" ] ],
+    [ "ultrasonic1:VCC", "esp:3V3", "red", [ "v0", "h-316.8", "v-374.4" ] ],
+    [ "ultrasonic1:GND", "esp:GND.3", "black", [ "v38.4", "h-183.6", "v-355.2" ] ],
+    [ "r1:2", "esp:GND.3", "green", [ "v-163.2", "h267.6", "v-144", "h-57.6" ] ],
+    [ "r1:1", "esp:13", "green", [ "v0" ] ],
+    [ "led1:A", "esp:14", "green", [ "v0" ] ],
+    [ "led1:C", "esp:GND.3", "green", [ "v0", "h-76.4", "v-163.2", "h412.8", "v115.2" ] ],
+    [ "r2:1", "led1:A", "green", [ "v0" ] ],
+    [ "r2:2", "esp:14", "green", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
